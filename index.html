@@ -5,14 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:bold' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <div class="board" id="board"></div>
-    <h2 class = 'gameStatus'></h2>
-    <button class = 'gameRestart'>Restart</button>
+    <div class="con">
+        <h1>Tic Tac Toe</h1>
+        <div class="playerNames">
+            <form>
+                <label for="p1Name">Player 1 Name:</label>
+                <input type="text" id="p1Name" name="p1Name" required>
+
+                <label for="p2Name">Player 2 Name:</label>
+                <input type="text" name="p2Name" id="p2Name">
+                <input type="button" value="Start Game!">
+            </form>
+        </div>
+        <div class="board" id="board">
+            <div data-cell-index ='0' class="box"></div>
+            <div data-cell-index ='1' class="box"></div>
+            <div data-cell-index ='2' class="box"></div>
+            <div data-cell-index ='3' class="box"></div>
+            <div data-cell-index ='4' class="box"></div>
+            <div data-cell-index ='5' class="box"></div>
+            <div data-cell-index ='6' class="box"></div>
+            <div data-cell-index ='7' class="box"></div>
+            <div data-cell-index ='8' class="box"></div>
+        </div>
+        <h2 class = 'gameStatus'></h2>
+        <button class = 'gameRestart'>Restart</button>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

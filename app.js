@@ -1,45 +1,100 @@
-const gameBoard = (function(array) {
+const gameBoard = (function() {
 
-    array = ['x', 'x', 'x', 'o', 'x', 'x', 'o', 'x', 'o'];
-    let gameState = ['','','','','','','','',''];
+    const statusDisplay = document.querySelector('.gameStatus');
     let gameActive = true;
     let currentPlayer = 'X';
+    let p1 = document.querySelector('p1Name');
+    let p2 = document.querySelector('p2name') || 'Computer';
+    let gameState = ["", "", "", "", "", "", "", "", ""];
+    const winningConditions = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
 
-    
-    function winwinChickDin(array){
-        winningMessage = () => `Player ${currentPlayer} has won!`;
-        array = [] || undefined;
-        
-            
+    function playerOne(){
+        let p1 = document.querySelector('p1Name');
+        return p1;
+    }
+
+    winningMessage = () => `Player ${currentPlayer} has won!`;
+    drawMessage = () => `It's a tie!`;
+    currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+
+    statusDisplay.innerHTML = currentPlayerTurn();
+
+    function handleBoxPlayed(clickedBox, clickedBoxIndex){
+        gameState[clickedBoxIndex] = currentPlayer;
+        clickedBox.innerHTML = currentPlayer;
+    }
+
+    function handlePlayerChange(){
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        statusDisplay.innerHTML = currentPlayerTurn();
+    }
+
+    function rulesValidation(){
+        let roundWon = false;
+        for(let i = 0; i<= 7; i++){
+            const winCondition = winningConditions[i];
+            let a = gameState[winCondition[0]];
+            let b = gameState[winCondition[1]];
+            let c = gameState[winCondition[2]];
+
+            if(a === '' || b === '' || c === ''){
+                continue;
+            }
+            if(a == b && b == c){
+                roundWon = true;
+                break
+            }
         }
-        //winwinChickDin(array);
+        if(roundWon){
+            statusDisplay.innerHTML = winningMessage();
+            gameActive = false; 
+            return;
+        }
+        let roundDraw = !gameState.includes('');
+        if(roundDraw){
+            statusDisplay.innerHTML = drawMessage();
+            gameActive = false;
+            return;
+        }
+        handlePlayerChange();
     }
 
-    function render(){
-        const statusDisplay = document.querySelector('gameStatus');
+    function boxClick(clickBoxEvent){
+        const clickedBox = clickBoxEvent.target;
 
-        array.forEach(e => {
-            const board = document.getElementById('board');
-            let box = document.createElement('div')
-            box.id = 'box';
-            box.cellIndex = e - 1;
-            box.innerText = e;
-            board.appendChild(box);
-        });
+        const clickedBoxIndex = parseInt(
+            clickedBox.getAttribute('data-cell-index')
+        );
+
+        if(gameState[clickedBoxIndex] !=='' || !gameActive){
+            return;
+        }
+
+        handleBoxPlayed(clickedBox, clickedBoxIndex);
+        rulesValidation();
     }
 
-    return {render, winwinChickDin};
+    function restartGame(){
+        gameActive = true; 
+        currentPlayer = 'X'
+        gameState = ['', '', '', '', '', '', '', '', ''];
+        statusDisplay.innerHTML = currentPlayerTurn();
+        document.querySelectorAll('.box').forEach(box => box.innerHTML = '')
+    }
+
+    document.querySelectorAll('.box').forEach(cell => cell.addEventListener('click', boxClick));
+    document.querySelector('.gameRestart').addEventListener('click', restartGame);
     
 })();
 
-const player = (function (name){
-    return {name};
-});
 
-const game = (function(p1, p2){
-    p1 = player1;
-    p2 = player2;
-})
 
-gameBoard.render();
-console.log(gameBoard.winwinChickDin());

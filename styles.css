@@ -1,24 +1,66 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: url(img/matt-drenth-p_b0Olfo06s-unsplash.jpeg) no-repeat 0 0;
+    background-size: cover;
     text-align: center;
+    height: 95vh;
 
 }
 
+.con{
+    background: url(img/moroccan-flower.png) 0 0;
+    opacity: 85%;
+    flex-direction: column;
+    justify-content: center;
+    width: 95vh;
+    margin: 8px;
+    padding:8px;
+    box-shadow: 0 0 16px 16px white inset;
+    border-radius: 5%;
 
+}
 
 .board{
     width: 600px;
     height: 600px;
-
+    align-items: center;
     margin: 0 auto;
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3,1fr);
+    grid-template-columns: repeat(3, auto);
     border-style: groove;
-    border-color: blueviolet;
+    border-color: rgb(131, 170, 194);
+    border-radius:5%;
+    justify-content:  space-evenly;
+    box-shadow: 0 0 8px 8px white inset;
 
 }
 .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-color: blueviolet;
     border-style: outset;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 0 1px #333333;
+    cursor: pointer;
+    border: 1px solid #333333;
+    font-size: 40px;
+    box-shadow: 0 0 8px 8px white inset;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    font-size: 40px;
+}
+p, div {
+    font-family: 'Vollkorn', Georgia, Times, serif;
+}
+
+.playerNames{
+    font-size: 20px;
+    margin:4px;
+    padding:4px;
+}
