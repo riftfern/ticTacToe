@@ -1,10 +1,11 @@
+//const bootstrap = require('bootstrap');
 const gameBoard = (function() {
 
     const statusDisplay = document.querySelector('.gameStatus');
     let gameActive = true;
     let currentPlayer = 'X';
-    let p1 = document.querySelector('p1Name');
-    let p2 = document.querySelector('p2name') || 'Computer';
+    let p1 = document.getElementById('#p1Name');
+    let p2 = document.getElementById('#p2Name');
     let gameState = ["", "", "", "", "", "", "", "", ""];
     const winningConditions = [
         [0,1,2],
@@ -17,9 +18,10 @@ const gameBoard = (function() {
         [2,4,6]
     ];
 
-    function playerOne(){
-        let p1 = document.querySelector('p1Name');
-        return p1;
+    function setPlayerNames(){
+        let p1 = document.querySelector('#p1Name');
+        let p2 = document.querySelector('#p2Name');
+        return p1, p2;
     }
 
     winningMessage = () => `Player ${currentPlayer} has won!`;
@@ -91,8 +93,9 @@ const gameBoard = (function() {
         document.querySelectorAll('.box').forEach(box => box.innerHTML = '')
     }
 
+    document.querySelector('#startBtn').addEventListener('click', setPlayerNames());
     document.querySelectorAll('.box').forEach(cell => cell.addEventListener('click', boxClick));
-    document.querySelector('.gameRestart').addEventListener('click', restartGame);
+    document.querySelector('#gameRestart').addEventListener('click', restartGame);
     
 })();
 

@@ -5,7 +5,7 @@ body{
     background: url(img/matt-drenth-p_b0Olfo06s-unsplash.jpeg) no-repeat 0 0;
     background-size: cover;
     text-align: center;
-    height: 95vh;
+    height: 100vh;
 
 }
 
@@ -23,8 +23,8 @@ body{
 }
 
 .board{
-    width: 600px;
-    height: 600px;
+    width: 70vh;
+    height: 60vh;
     align-items: center;
     margin: 0 auto;
     display: grid;
@@ -54,6 +54,7 @@ body{
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
     font-size: 40px;
+    text-align: center;
 }
 p, div {
     font-family: 'Vollkorn', Georgia, Times, serif;
@@ -63,4 +64,6 @@ p, div {
     font-size: 20px;
     margin:4px;
     padding:4px;
+    display: flex;
+    height: 10vh;
 }
