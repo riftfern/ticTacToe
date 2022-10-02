@@ -24,7 +24,9 @@
     currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
     function setPlayerName(){
-
+        player1Name = document.getElementById('p1Name').value;
+        player2Name = document.getElementById('p2Name').value;
+        return player1Name, player2Name;
     }
 
     statusDisplay.innerHTML = currentPlayerTurn();
@@ -93,7 +95,7 @@
         document.querySelectorAll('.box').forEach(box => box.innerHTML = '')
     }
 
-    
+    document.querySelector('#startBtn').addEventListener('click', setPlayerName);
     document.querySelectorAll('.box').forEach(cell => cell.addEventListener('click', boxClick));
     document.querySelector('#gameRestart').addEventListener('click', restartGame);
     
