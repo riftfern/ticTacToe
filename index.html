@@ -8,22 +8,13 @@
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:bold' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <div class="con">
         <h1>Tic Tac Toe</h1>
-        <div id="playerNames" class="d-grid gap-2 col-6 mx-auto">
-            <form>
-                <label for="p1Name" class="form-label">Player 1 Name:</label>
-                <input type="text" class='form-control form-control-sm' id="p1Name" name="p1Name" required>
-
-                <label for="p2Name" class="form-label">Player 2 Name:</label>
-                <input type="text" class='form-control form-control-sm'name="p2Name" id="p2Name">
-                <button type="submit" id = 'startBtn' class="btn btn-outline-primary btn-large">Start Game!</button>      
-            </form>
-        </div>
         <div class="board" id="board">
             <div data-cell-index ='0' class="box"></div>
             <div data-cell-index ='1' class="box"></div>
@@ -37,10 +28,32 @@
         </div>
         <h2 class = 'gameStatus'></h2>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button id='gameRestart' class = 'btn btn-outline-primary btn-large'>Restart</button>
+            <button type="button" class="btn btn-primary btn-large" data-bs-toggle="modal" data-bs-target="#exampleModal">Enter Your Names</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop='false'>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <label for="p1Name" class="form-label">Player 1 Name:</label>
+                                <input type="text" class='form-control form-control-sm' id="p1Name" name="p1Name" required>
+                        
+                                <label for="p2Name" class="form-label">Player 2 Name:</label>
+                                <input type="text" class='form-control form-control-sm'name="p2Name" id="p2Name">    
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id ='startBtn' class="btn btn-outline-primary btn-large">Start Game!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id='gameRestart' class = 'btn btn-primary'>Restart</button>
         </div>  
     </div>
     <script src="app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

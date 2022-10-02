@@ -1,12 +1,12 @@
 //const bootstrap = require('bootstrap');
-const gameBoard = (function() {
+//const gameBoard = (function() {
 
     const statusDisplay = document.querySelector('.gameStatus');
     let gameActive = true;
     let currentPlayer = 'X';
-    let p1 = document.getElementById('#p1Name');
-    let p2 = document.getElementById('#p2Name');
     let gameState = ["", "", "", "", "", "", "", "", ""];
+    let player1Name = '';
+    let player2Name = '';
     const winningConditions = [
         [0,1,2],
         [3,4,5],
@@ -18,15 +18,14 @@ const gameBoard = (function() {
         [2,4,6]
     ];
 
-    function setPlayerNames(){
-        let p1 = document.querySelector('#p1Name');
-        let p2 = document.querySelector('#p2Name');
-        return p1, p2;
-    }
 
     winningMessage = () => `Player ${currentPlayer} has won!`;
     drawMessage = () => `It's a tie!`;
     currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+
+    function setPlayerName(){
+
+    }
 
     statusDisplay.innerHTML = currentPlayerTurn();
 
@@ -37,7 +36,8 @@ const gameBoard = (function() {
 
     function handlePlayerChange(){
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        statusDisplay.innerHTML = currentPlayerTurn();
+        currentPlayerName = currentPlayer === 'X' ? player1Name : player2Name;
+        statusDisplay.innerHTML = `${currentPlayerTurn()}: ${currentPlayerName}`;
     }
 
     function rulesValidation(){
@@ -93,11 +93,10 @@ const gameBoard = (function() {
         document.querySelectorAll('.box').forEach(box => box.innerHTML = '')
     }
 
-    document.querySelector('#startBtn').addEventListener('click', setPlayerNames());
+    
     document.querySelectorAll('.box').forEach(cell => cell.addEventListener('click', boxClick));
     document.querySelector('#gameRestart').addEventListener('click', restartGame);
     
-})();
-
+//})();
 
 
