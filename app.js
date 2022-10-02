@@ -1,5 +1,4 @@
-//const bootstrap = require('bootstrap');
-//const gameBoard = (function() {
+const gameBoard = (function() {
 
     const statusDisplay = document.querySelector('.gameStatus');
     let gameActive = true;
@@ -99,6 +98,6 @@
     document.querySelectorAll('.box').forEach(cell => cell.addEventListener('click', boxClick));
     document.querySelector('#gameRestart').addEventListener('click', restartGame);
     
-//})();
+})();
 
 
