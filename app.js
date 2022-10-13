@@ -1,3 +1,24 @@
+let gameBoardModule = {
+    gameBoard: ["", "", "", "", "", "", "", "", ""],
+    init: function(){
+        this.cacheDom();
+        this.bindEvents();
+        this.render(); 
+    },
+    cacheDom: function(){
+        this.statusDisplay = document.querySelector('.gameStatus'),
+        this.player1Name = document.getElementById('p1Name').value,
+        this.player2Name = document.getElementById('p2Name').value,
+    },
+    bindEvents: function(){
+
+    }
+    //render method, interacts with the html
+    render: function (){
+        
+    }
+}
+
 const gameBoard = (function() {
 
     const statusDisplay = document.querySelector('.gameStatus');
@@ -16,11 +37,15 @@ const gameBoard = (function() {
         [0,4,8],
         [2,4,6]
     ];
+    let messages = {
+        winningMessage: () => `Player ${currentPlayer} has won!`,
+        drawMessage: () => `It's a tie!`,
+        currentPlayerTurn: () => `It's ${currentPlayer}'s turn`
+    }
 
-
-    winningMessage = () => `Player ${currentPlayer} has won!`;
-    drawMessage = () => `It's a tie!`;
-    currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+    //winningMessage = () => `Player ${currentPlayer} has won!`;
+    //drawMessage = () => `It's a tie!`;
+    //currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
     function setPlayerName(){
         player1Name = document.getElementById('p1Name').value;
@@ -28,7 +53,7 @@ const gameBoard = (function() {
         return player1Name, player2Name;
     }
 
-    statusDisplay.innerHTML = currentPlayerTurn();
+    statusDisplay.innerHTML = messages.currentPlayerTurn();
 
     function handleBoxPlayed(clickedBox, clickedBoxIndex){
         gameState[clickedBoxIndex] = currentPlayer;
@@ -38,7 +63,7 @@ const gameBoard = (function() {
     function handlePlayerChange(){
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         currentPlayerName = currentPlayer === 'X' ? player1Name : player2Name;
-        statusDisplay.innerHTML = `${currentPlayerTurn()}: ${currentPlayerName}`;
+        statusDisplay.innerHTML = `${messages.currentPlayerTurn()}: ${currentPlayerName}`;
     }
 
     function rulesValidation(){
@@ -58,13 +83,13 @@ const gameBoard = (function() {
             }
         }
         if(roundWon){
-            statusDisplay.innerHTML = winningMessage();
+            statusDisplay.innerHTML = messages.winningMessage();
             gameActive = false; 
             return;
         }
         let roundDraw = !gameState.includes('');
         if(roundDraw){
-            statusDisplay.innerHTML = drawMessage();
+            statusDisplay.innerHTML = messages.drawMessage();
             gameActive = false;
             return;
         }
@@ -90,7 +115,7 @@ const gameBoard = (function() {
         gameActive = true; 
         currentPlayer = 'X'
         gameState = ['', '', '', '', '', '', '', '', ''];
-        statusDisplay.innerHTML = currentPlayerTurn();
+        statusDisplay.innerHTML = `${messages.currentPlayerTurn()} ${player1Name}`;
         document.querySelectorAll('.box').forEach(box => box.innerHTML = '')
     }
 
